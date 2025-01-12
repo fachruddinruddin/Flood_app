@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Banjir = () => {
     const [data, setData] = useState([]);
@@ -30,6 +31,11 @@ const Banjir = () => {
                     }
                 );
                 setData(data.map(item => (item._id === currentId ? response.data : item)));
+                Swal.fire({
+                    icon: "success",
+                    title: "Edit Berhasil",
+                    text: "Data banjir berhasil diperbarui.",
+                });
             } else {
                 // Create new report
                 const response = await axios.post(
@@ -43,6 +49,11 @@ const Banjir = () => {
                     }
                 );
                 setData([...data, response.data]);
+                Swal.fire({
+                    icon: "success",
+                    title: "Tambah Berhasil",
+                    text: "Data banjir berhasil ditambahkan.",
+                });
             }
             setForm({ location: "", severity: "", description: "", date: "" });
             setIsModalOpen(false);
@@ -61,6 +72,11 @@ const Banjir = () => {
                 },
             });
             setData(data.filter(item => item._id !== id));
+            Swal.fire({
+                icon: "success",
+                title: "Hapus Berhasil",
+                text: "Data banjir berhasil dihapus.",
+            });
         } catch (error) {
             setError("Error saat menghapus data");
         }
