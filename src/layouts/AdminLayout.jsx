@@ -31,11 +31,11 @@ const AdminLayout = () => {
           <div>
             <h1 className="text-xl font-bold">Admin Dashboard</h1>
             {user ? (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-black">
                 Welcome, {user.name} ({user.email})
               </p>
             ) : (
-              <p className="text-sm text-gray-600">Welcome, Guest</p>
+              <p className="text-sm text-black">Welcome, Guest</p>
             )}
           </div>
           <Button className="primary" text="Logout" onClick={handleLogout} />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card";
-import { Users, Activity } from "lucide-react";
+import { Activity, CloudRain } from "lucide-react";
+import axios from "axios";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -11,7 +12,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const banjirCount = 5;
+        const response = await axios.get("http://localhost:5000/api/flood");
+        const banjirCount = response.data.length;
 
         setStats({
           banjirCount,
@@ -54,7 +56,7 @@ const Dashboard = () => {
           <Card
             title="Total Banjir"
             count={stats.banjirCount}
-            icon={<Users className="w-10 h-10" />}
+            icon={<CloudRain className="w-10 h-10" />}
           />
           <Card
             title="Active Users"
